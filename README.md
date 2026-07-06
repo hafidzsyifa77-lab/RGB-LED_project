@@ -1,35 +1,34 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C5 | ESP32-C6 | ESP32-H2 | ESP32-P4 | ESP32-S2 | ESP32-S3 |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
+# ESP32 RGB LED Potentiometer Controller
 
-# _Sample project_
+A smooth and responsive color-mixing system powered by the ESP32. This project maps analog potentiometer inputs to RGB LED channels using hardware-accelerated PWM for seamless color transitions.
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+## Features
 
-This is the simplest buildable example. The example is used by command `idf.py create-project`
-that copies the project to user specified path and set it's name. For more information follow the [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project)
+*   **Dynamic Color Mixing:** Cycles through the full RGB color spectrum based on the position of the potentiometer.
+*   **Linear Interpolation:** Implements a custom `map_value` function for smooth fading effects across the color wheel.
+*   **Hardware-Accelerated PWM:** Utilizes the ESP32 LEDC peripheral for stable, flicker-free light control.
+*   **Efficient Processing:** Uses FreeRTOS task delays for responsive performance without taxing the CPU.
+*   **Real-time Monitoring:** Outputs color values (R, G, B) and ADC readings to the serial monitor for easy debugging.
 
+## Components
 
+*   **Microcontroller:** ESP32 DevKit V1
+*   **Input:** 10k Ohm Potentiometer
+*   **Output:** Common Cathode/Anode RGB LED
+*   **Accessories:** Breadboard, Jumper Wires, and Resistors (for LED)
 
-## How to use example
-We encourage the users to use the example as a template for the new projects.
-A recommended way is to follow the instructions on a [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project).
+## Pin Configuration
 
-## Example folder contents
+| Component | GPIO Pin |
+| :--- | :--- |
+| Potentiometer (Wiper) | GPIO 36 (ADC1_CHANNEL_0) |
+| RGB LED (Red) | GPIO 21 |
+| RGB LED (Green) | GPIO 22 |
+| RGB LED (Blue) | GPIO 23 |
 
-The project **sample_project** contains one source file in C language [main.c](main/main.c). The file is located in folder [main](main).
+## How to Run
 
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt`
-files that provide set of directives and instructions describing the project's source files and targets
-(executable, library, or both). 
-
-Below is short explanation of remaining files in the project folder.
-
-```
-├── CMakeLists.txt
-├── main
-│   ├── CMakeLists.txt
-│   └── main.c
-└── README.md                  This is the file you are currently reading
-```
-Additionally, the sample project contains Makefile and component.mk files, used for the legacy Make based build system. 
-They are not used or needed when building with CMake and idf.py.
+1. Ensure your **ESP-IDF** development environment is correctly set up.
+2. Clone this repository:
+   ```bash
+   git clone https://github.com/hafidzsyifa77-lab/RGB-LED_project
